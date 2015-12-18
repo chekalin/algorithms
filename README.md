@@ -1,0 +1,1 @@
+Implementation of some algorithms from Coursera course [Algorithms: Design and Analysis, Part 1](https://www.coursera.org/course/algo)
