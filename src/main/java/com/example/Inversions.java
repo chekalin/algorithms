@@ -44,7 +44,8 @@ public class Inversions {
             } else if (helperArray[leftPos] > helperArray[rightPos]) {
                 input[k] = helperArray[rightPos];
                 rightPos++;
-                count += middleBoundary - leftPos + 1;
+                // all items left on the left side are inversions
+                count += middleBoundary + 1 - leftPos;
             } else {
                 input[k] = helperArray[leftPos];
                 leftPos++;
