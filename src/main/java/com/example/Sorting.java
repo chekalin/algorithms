@@ -54,6 +54,31 @@ public class Sorting {
         }
     }
 
+    public static int[] quickSort(int[] array) {
+        quickSort(array, 0, array.length -1);
+        return array;
+    }
+
+    private static void quickSort(int[] array, int start, int end) {
+        if (end <= start) return;
+        int pivotIndex = partition(array, start, end);
+        quickSort(array, start, pivotIndex - 1);
+        quickSort(array, pivotIndex + 1, end);
+    }
+
+    private static int partition(int[] array, int start, int end) {
+        int pivotElement = array[start];
+        int boundary = start + 1;
+        for (int i = start + 1; i <= end; i++) {
+            if (array[i] < pivotElement) {
+                swap(array, i, boundary);
+                boundary++;
+            }
+        }
+        swap(array, start, boundary - 1);
+        return boundary - 1;
+    }
+
     private static void swap(int[] array, int pos1, int pos2) {
         int temp = array[pos1];
         array[pos1] = array[pos2];
