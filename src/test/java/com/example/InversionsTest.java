@@ -6,11 +6,11 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Random;
 import java.util.Scanner;
 
 import static com.example.Inversions.findInversions;
 import static com.example.Inversions.findInversionsBruteForce;
+import static com.example.util.TestDataGenerator.createArrayOfRandomIntegers;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -48,7 +48,7 @@ public class InversionsTest {
     @Ignore("too slow")
     public void testBrutForcePerformance() throws Exception {
         for (int size = 1000; size <= 512000; size *= 2) {
-            int[] testData = createTestData(size);
+            int[] testData = createArrayOfRandomIntegers(size);
             Stopwatch stopwatch = Stopwatch.createStarted();
             findInversionsBruteForce(testData);
             stopwatch.stop();
@@ -59,7 +59,7 @@ public class InversionsTest {
     @Test
     public void testPerformance() throws Exception {
         for (int size = 10; size <= 4096000; size *= 2) {
-            int[] testData = createTestData(size);
+            int[] testData = createArrayOfRandomIntegers(size);
             Stopwatch stopwatch = Stopwatch.createStarted();
             findInversions(testData);
             stopwatch.stop();
@@ -81,14 +81,5 @@ public class InversionsTest {
             data[i] = scanner.nextInt();
         }
         return data;
-    }
-
-    private int[] createTestData(int size) {
-        int[] input = new int[size];
-        Random random = new Random(1L);
-        for (int i = 0; i < size; i++) {
-            input[i] = random.nextInt();
-        }
-        return input;
     }
 }
