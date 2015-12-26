@@ -4,12 +4,9 @@ import com.google.common.base.Stopwatch;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import static com.example.Inversions.findInversions;
 import static com.example.Inversions.findInversionsBruteForce;
+import static com.example.util.IOUtils.readIntegersFromFile;
 import static com.example.util.TestDataGenerator.createArrayOfRandomIntegers;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -68,18 +65,10 @@ public class InversionsTest {
     }
 
     @Test
-    public void testName() throws Exception {
-        int[] data = readIntegersFromFile("IntegerArray.txt", 100000);
+    public void testHomework1() throws Exception {
+        int[] data = readIntegersFromFile("homework1/IntegerArray.txt", 100000);
         long result = findInversions(data);
         System.out.println("result = " + result);
     }
 
-    private int[] readIntegersFromFile(String filename, int numberOfIntegers) throws FileNotFoundException {
-        int[] data = new int[numberOfIntegers];
-        Scanner scanner = new Scanner(new File(getClass().getClassLoader().getResource(filename).getFile()));
-        for (int i = 0; i < numberOfIntegers; i++) {
-            data[i] = scanner.nextInt();
-        }
-        return data;
-    }
 }

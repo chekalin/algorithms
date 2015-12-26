@@ -1,6 +1,10 @@
 package com.example;
 
+import java.util.Arrays;
+
 public class Sorting {
+
+    public static int comparisonCount = 0;
 
     public static int[] bubbleSort(int[] array) {
         boolean swapped;
@@ -55,7 +59,8 @@ public class Sorting {
     }
 
     public static int[] quickSort(int[] array) {
-        quickSort(array, 0, array.length -1);
+        comparisonCount = 0;
+        quickSort(array, 0, array.length - 1);
         return array;
     }
 
@@ -67,6 +72,7 @@ public class Sorting {
     }
 
     private static int partition(int[] array, int start, int end) {
+        comparisonCount += end - start;
         int pivotElement = array[start];
         int boundary = start + 1;
         for (int i = start + 1; i <= end; i++) {
@@ -77,6 +83,51 @@ public class Sorting {
         }
         swap(array, start, boundary - 1);
         return boundary - 1;
+    }
+
+    public static int[] quickSortFinal(int[] array) {
+        comparisonCount = 0;
+        quickSortFinal(array, 0, array.length - 1);
+        return array;
+    }
+
+    private static void quickSortFinal(int[] array, int start, int end) {
+        if (end <= start) return;
+        swap(array, start, end);
+        int pivotIndex = partition(array, start, end);
+        quickSortFinal(array, start, pivotIndex - 1);
+        quickSortFinal(array, pivotIndex + 1, end);
+    }
+
+    public static int[] quickSortMedianOfThree(int[] array) {
+        comparisonCount = 0;
+        quickSortMedianOfThree(array, 0, array.length - 1);
+        return array;
+    }
+
+    private static void quickSortMedianOfThree(int[] array, int start, int end) {
+        if (end <= start) return;
+        int median = findMedianIndex(array, start, end);
+        swap(array, start, median);
+        int pivotIndex = partition(array, start, end);
+        quickSortMedianOfThree(array, start, pivotIndex - 1);
+        quickSortMedianOfThree(array, pivotIndex + 1, end);
+    }
+
+    private static String printSubArray(int[] array, int start, int end) {
+        return Arrays.toString(Arrays.copyOfRange(array, start, end + 1));
+    }
+
+    static int findMedianIndex(int[] array, int start, int end) {
+        int[] medianCandidates = new int[3];
+        medianCandidates[0] = array[start];
+        medianCandidates[1] = array[(start + end) / 2];
+        medianCandidates[2] = array[end];
+        Arrays.sort(medianCandidates);
+        int median = medianCandidates[1];
+        if (array[start] == median) return start;
+        if (array[(start + end) / 2] == median) return (start + end) / 2;
+        else return end;
     }
 
     private static void swap(int[] array, int pos1, int pos2) {
