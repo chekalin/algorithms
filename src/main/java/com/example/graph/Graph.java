@@ -4,6 +4,9 @@ import com.google.common.base.Joiner;
 
 import java.util.*;
 
+import static com.google.common.collect.Collections2.filter;
+import static com.google.common.collect.Lists.newArrayList;
+
 public class Graph {
     private List<Node> nodes = new ArrayList<>();
     private List<Edge> edges = new ArrayList<>();
@@ -36,6 +39,10 @@ public class Graph {
         return result;
     }
 
+    public Collection<Edge> getEdgesForNode(int node) {
+        return newArrayList(filter(this.edges, edge -> edge.node1 == node || edge.node2 == node));
+    }
+
     public void removeEdge(int node1, int node2) {
         Iterator<Edge> iterator = edges.iterator();
         while (iterator.hasNext()) {
@@ -57,13 +64,24 @@ public class Graph {
         Iterator<Node> iterator = nodes.iterator();
         while (iterator.hasNext()) {
             Node next = iterator.next();
-            if(next.id == node) {
+            if (next.id == node) {
                 for (Integer adjacentNode : getAdjacentNodes(node)) {
                     removeEdge(node, adjacentNode);
                 }
                 iterator.remove();
             }
         }
+    }
+
+    public Edge getRandomEdge() {
+        return edges.get(new Random().nextInt(edges.size()));
+    }
+
+    public Graph copy() {
+        Graph copy = new Graph();
+        copy.edges = newArrayList(edges);
+        copy.nodes = newArrayList(nodes);
+        return copy;
     }
 
     @Override
@@ -90,9 +108,9 @@ public class Graph {
         }
     }
 
-    private static class Edge {
-        private final int node1;
-        private final int node2;
+    public static class Edge {
+        public final int node1;
+        public final int node2;
 
         private Edge(int node1, int node2) {
             this.node1 = node1;

@@ -11,6 +11,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.hamcrest.core.IsNot.not;
+import static org.hamcrest.core.IsNull.nullValue;
 
 public class GraphTest {
 
@@ -108,5 +109,62 @@ public class GraphTest {
         Collection<Integer> nodesAdjacentTo1 = graph.getAdjacentNodes(1);
         assertThat(nodesAdjacentTo1, hasSize(2));
         assertThat(nodesAdjacentTo1, hasItems(2, 3));
+    }
+
+    @Test
+    public void shouldReturnRandomEdge() throws Exception {
+        Graph graph = new Graph();
+        graph.addNodes(1, 2);
+        graph.addEdge(1, 2);
+        Graph.Edge edge = graph.getRandomEdge();
+        assertThat(edge, is(not(nullValue())));
+        assertThat(edge.node1, is(1));
+        assertThat(edge.node2, is(2));
+    }
+
+    @Test
+    public void shouldCopyItself() throws Exception {
+        Graph graph = new Graph();
+        graph.addNodes(1, 2);
+        graph.addEdge(1, 2);
+        Graph copy = graph.copy();
+        assertThat(copy.getNumberOfNodes(), is(2));
+        assertThat(copy.getNumberOfEdges(), is(1));
+    }
+
+    @Test
+    public void copyShouldNotAffectOriginal() throws Exception {
+        Graph original = new Graph();
+        original.addNodes(1, 2);
+        original.addEdge(1, 2);
+        Graph copy = original.copy();
+        copy.removeNode(1);
+        assertThat(original.getNumberOfNodes(), is(2));
+        assertThat(original.getNumberOfEdges(), is(1));
+    }
+
+    @Test
+    public void shouldReturnEdgesForNode() throws Exception {
+        Graph graph = new Graph();
+        graph.addNodes(1, 2);
+        graph.addEdge(1, 2);
+        Collection<Graph.Edge> node1Edges = graph.getEdgesForNode(1);
+        assertThat(node1Edges, hasSize(1));
+        Graph.Edge edge = node1Edges.iterator().next();
+        assertThat(edge.node1, is(1));
+        assertThat(edge.node2, is(2));
+    }
+
+    @Test
+    public void shouldNotReturnEdgesNotConnectedToNode() throws Exception {
+        Graph graph = new Graph();
+        graph.addNodes(1, 2, 3);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+        Collection<Graph.Edge> node1Edges = graph.getEdgesForNode(1);
+        assertThat(node1Edges, hasSize(1));
+        Graph.Edge edge = node1Edges.iterator().next();
+        assertThat(edge.node1, is(1));
+        assertThat(edge.node2, is(2));
     }
 }
