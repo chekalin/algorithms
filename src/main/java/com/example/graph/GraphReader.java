@@ -19,7 +19,7 @@ public class GraphReader {
             Iterator<String> iterator = nodeTokens.iterator();
             int nodeId = Integer.parseInt(iterator.next());
             graph.addNode(nodeId);
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
                 String next = iterator.next();
                 if (next.isEmpty()) continue;
                 int edgeTo = Integer.parseInt(next);
