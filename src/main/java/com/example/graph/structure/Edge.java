@@ -1,4 +1,4 @@
-package com.example.graph;
+package com.example.graph.structure;
 
 public class Edge {
     public final int node1;

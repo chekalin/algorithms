@@ -1,5 +1,7 @@
 package com.example.graph;
 
+import com.example.graph.structure.DirectedGraph;
+import com.example.graph.structure.UndirectedGraph;
 import com.google.common.base.Splitter;
 import com.google.common.io.Resources;
 
@@ -11,8 +13,8 @@ import java.util.regex.Pattern;
 
 public class GraphReader {
 
-    public static Graph readGraphFromFile(String filename) throws IOException {
-        Graph graph = new Graph();
+    public static UndirectedGraph readGraphFromFile(String filename) throws IOException {
+        UndirectedGraph graph = new UndirectedGraph();
         List<String> nodeLines = Resources.readLines(Resources.getResource(filename), Charset.forName("UTF-8"));
         for (String nodeLine : nodeLines) {
             Iterable<String> nodeTokens = Splitter.on(Pattern.compile("\t|\\s+")).split(nodeLine);

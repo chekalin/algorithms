@@ -1,13 +1,14 @@
-package com.example.graph;
+package com.example.graph.structure;
 
 import com.google.common.base.Joiner;
+import com.google.common.collect.Lists;
 
 import java.util.*;
 
 import static com.google.common.collect.Collections2.filter;
 import static com.google.common.collect.Lists.newArrayList;
 
-public class Graph {
+public class UndirectedGraph {
     private List<Node> nodes = new ArrayList<>();
     private List<Edge> edges = new ArrayList<>();
 
@@ -77,9 +78,9 @@ public class Graph {
         return edges.get(new Random().nextInt(edges.size()));
     }
 
-    public Graph copy() {
-        Graph copy = new Graph();
-        copy.edges = newArrayList(edges);
+    public UndirectedGraph copy() {
+        UndirectedGraph copy = new UndirectedGraph();
+        copy.edges = Lists.newArrayList(edges);
         copy.nodes = newArrayList(nodes);
         return copy;
     }

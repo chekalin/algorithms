@@ -1,5 +1,6 @@
 package com.example.graph;
 
+import com.example.graph.structure.DirectedGraph;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

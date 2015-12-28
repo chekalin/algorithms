@@ -1,5 +1,6 @@
-package com.example.graph;
+package com.example.graph.structure;
 
+import com.example.graph.structure.DirectedGraph;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

@@ -1,5 +1,6 @@
 package com.example.graph;
 
+import com.example.graph.structure.UndirectedGraph;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ public class MinCutTest {
     @Test
     public void shouldContractTwoNodesIntoOne() throws Exception {
         // 1 - 2 -> 1 | contracting 1, 2
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2);
         graph.addEdge(1, 2);
         contract(graph, 1, 2);
@@ -27,7 +28,7 @@ public class MinCutTest {
     @Test
     public void shouldContractTwoNodesOutOfThree() throws Exception {
         // 1 - 2 - 3 -> 1 - 3 | contracting 1, 2
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2, 3);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
@@ -49,7 +50,7 @@ public class MinCutTest {
                        \
             4 - 3        3
          */
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2, 3, 4);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
@@ -75,7 +76,7 @@ public class MinCutTest {
               \
                 3
          */
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2, 3);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
@@ -93,7 +94,7 @@ public class MinCutTest {
               \\         -
                  3
          */
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2, 3);
         graph.addEdge(1, 2);
         graph.addEdge(1, 2);
@@ -107,7 +108,7 @@ public class MinCutTest {
     @Test
     public void shouldReturnNumberOfEdgesForGraphWithTwoNodes() throws Exception {
         // 1 - 2
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2);
         graph.addEdge(1, 2);
         assertThat(findMinCut(graph), is(1));
@@ -125,7 +126,7 @@ public class MinCutTest {
               \
                 3
          */
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2, 3);
         graph.addEdge(1, 2);
         graph.addEdge(1, 3);
@@ -142,7 +143,7 @@ public class MinCutTest {
 
             4 - 3
          */
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2, 3, 4);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
@@ -160,7 +161,7 @@ public class MinCutTest {
 
             4 - 3
          */
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2, 3, 4);
         graph.addEdge(1, 2);
         graph.addEdge(1, 3);
@@ -173,35 +174,35 @@ public class MinCutTest {
 
     @Test
     public void testGraph1() throws Exception {
-        Graph graph = readGraphFromFile("homework3/testGraph1.txt");
+        UndirectedGraph graph = readGraphFromFile("homework3/testGraph1.txt");
         int minCut = findMinCut(graph, 1000);
         assertThat(minCut, is(2));
     }
 
     @Test
     public void testGraph2() throws Exception {
-        Graph graph = readGraphFromFile("homework3/testGraph2.txt");
+        UndirectedGraph graph = readGraphFromFile("homework3/testGraph2.txt");
         int minCut = findMinCut(graph, 1000);
         assertThat(minCut, is(2));
     }
 
     @Test
     public void testGraph3() throws Exception {
-        Graph graph = readGraphFromFile("homework3/testGraph3.txt");
+        UndirectedGraph graph = readGraphFromFile("homework3/testGraph3.txt");
         int minCut = findMinCut(graph, 1000);
         assertThat(minCut, is(1));
     }
 
     @Test
     public void testGraph4() throws Exception {
-        Graph graph = readGraphFromFile("homework3/testGraph4.txt");
+        UndirectedGraph graph = readGraphFromFile("homework3/testGraph4.txt");
         int minCut = findMinCut(graph, 1000);
         assertThat(minCut, is(3));
     }
 
     @Test
     public void testGraph5() throws Exception {
-        Graph graph = readGraphFromFile("homework3/testGraph5.txt");
+        UndirectedGraph graph = readGraphFromFile("homework3/testGraph5.txt");
         int minCut = findMinCut(graph, 1000);
         assertThat(minCut, is(2));
     }
@@ -209,7 +210,7 @@ public class MinCutTest {
     @Test
     @Ignore("slow")
     public void testHomework3() throws Exception {
-        Graph graph = readGraphFromFile("homework3/kargerMinCut.txt");
+        UndirectedGraph graph = readGraphFromFile("homework3/kargerMinCut.txt");
         int minCut = findMinCut(graph, 500);
         System.out.println("minCut = " + minCut);
     }

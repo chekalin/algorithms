@@ -1,4 +1,4 @@
-package com.example.graph;
+package com.example.graph.structure;
 
 import org.junit.Test;
 
@@ -13,39 +13,39 @@ import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.nullValue;
 
-public class GraphTest {
+public class UndirectedGraphTest {
 
     @Test
     public void shouldBeCreatedWithEmptyEdgesAndNodes() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         assertThat(graph.getNumberOfNodes(), is(0));
         assertThat(graph.getNumberOfEdges(), is(0));
     }
 
     @Test
     public void shouldAddNode() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNode(1);
         assertThat(graph.getNumberOfNodes(), is(1));
     }
 
     @Test
     public void shouldAddNodes() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2);
         assertThat(graph.getNumberOfNodes(), is(2));
     }
 
     @Test
     public void shouldAddEdges() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addEdge(1, 2);
         assertThat(graph.getNumberOfEdges(), is(1));
     }
 
     @Test
     public void shouldRemoveEdges() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2, 3);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
@@ -56,7 +56,7 @@ public class GraphTest {
 
     @Test
     public void shouldRemoveEdgesEvenWhenSpecifiedInReverseOrder() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2, 3);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
@@ -67,7 +67,7 @@ public class GraphTest {
 
     @Test
     public void shouldRemoveNodeWithAllEdges() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2, 3);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
@@ -79,14 +79,14 @@ public class GraphTest {
 
     @Test
     public void shouldReturnZeroAdjacentNodesWhenOneNode() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNode(1);
         assertThat(graph.getAdjacentNodes(1), is(empty()));
     }
 
     @Test
     public void shouldReturnAdjacentNodeWhenThereIsAnEdge() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNode(1);
         graph.addNode(2);
         graph.addEdge(1, 2);
@@ -100,7 +100,7 @@ public class GraphTest {
 
     @Test
     public void shouldReturnMultipleAdjacentNodes() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNode(1);
         graph.addNode(2);
         graph.addNode(3);
@@ -113,7 +113,7 @@ public class GraphTest {
 
     @Test
     public void shouldReturnRandomEdge() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2);
         graph.addEdge(1, 2);
         Edge edge = graph.getRandomEdge();
@@ -124,20 +124,20 @@ public class GraphTest {
 
     @Test
     public void shouldCopyItself() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2);
         graph.addEdge(1, 2);
-        Graph copy = graph.copy();
+        UndirectedGraph copy = graph.copy();
         assertThat(copy.getNumberOfNodes(), is(2));
         assertThat(copy.getNumberOfEdges(), is(1));
     }
 
     @Test
     public void copyShouldNotAffectOriginal() throws Exception {
-        Graph original = new Graph();
+        UndirectedGraph original = new UndirectedGraph();
         original.addNodes(1, 2);
         original.addEdge(1, 2);
-        Graph copy = original.copy();
+        UndirectedGraph copy = original.copy();
         copy.removeNode(1);
         assertThat(original.getNumberOfNodes(), is(2));
         assertThat(original.getNumberOfEdges(), is(1));
@@ -145,7 +145,7 @@ public class GraphTest {
 
     @Test
     public void shouldReturnEdgesForNode() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2);
         graph.addEdge(1, 2);
         Collection<Edge> node1Edges = graph.getEdgesForNode(1);
@@ -157,7 +157,7 @@ public class GraphTest {
 
     @Test
     public void shouldNotReturnEdgesNotConnectedToNode() throws Exception {
-        Graph graph = new Graph();
+        UndirectedGraph graph = new UndirectedGraph();
         graph.addNodes(1, 2, 3);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);

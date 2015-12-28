@@ -1,5 +1,8 @@
 package com.example.graph;
 
+import com.example.graph.structure.DirectedGraph;
+import com.example.graph.structure.Edge;
+
 import java.util.Collection;
 import java.util.Map;
 

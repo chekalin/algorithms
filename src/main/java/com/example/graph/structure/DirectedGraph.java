@@ -1,4 +1,4 @@
-package com.example.graph;
+package com.example.graph.structure;
 
 import java.util.ArrayList;
 import java.util.Collection;

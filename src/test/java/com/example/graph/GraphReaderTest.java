@@ -1,5 +1,8 @@
 package com.example.graph;
 
+import com.example.graph.structure.DirectedGraph;
+import com.example.graph.structure.Edge;
+import com.example.graph.structure.UndirectedGraph;
 import org.junit.Test;
 
 import static com.example.graph.GraphReader.readDirectedGraphFromFile;
@@ -14,7 +17,7 @@ public class GraphReaderTest {
 
     @Test
     public void shouldReadGraphFromFile() throws Exception {
-        Graph graph = readGraphFromFile("homework3/simple.txt");
+        UndirectedGraph graph = readGraphFromFile("homework3/simple.txt");
         assertThat(graph.getNumberOfNodes(), is(3));
         assertThat(graph.getNumberOfEdges(), is(2));
         assertThat(graph.getAdjacentNodes(1), hasSize(2));
