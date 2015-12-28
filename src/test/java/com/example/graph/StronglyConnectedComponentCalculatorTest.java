@@ -107,7 +107,7 @@ public class StronglyConnectedComponentCalculatorTest {
     }
 
     @Test
-    @Ignore("requires homework4/SCC.txt")
+    @Ignore("requires homework4/SCC.txt, flag -Xss10m (to avoid StackOverflow)")
     public void testHomework4() throws Exception {
         DirectedGraph graph = readDirectedGraphFromFile("homework4/SCC.txt", 875714);
         int[] result = calculator.calculate(graph);
