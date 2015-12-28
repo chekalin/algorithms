@@ -32,4 +32,15 @@ public class GraphReader {
         return graph;
     }
 
+    public static DirectedGraph readDirectedGraphFromFile(String filename, int numberOfNodes) throws IOException {
+        DirectedGraph graph = new DirectedGraph(numberOfNodes);
+        List<String> edgeLines = Resources.readLines(Resources.getResource(filename), Charset.forName("UTF-8"));
+        for (String edgeLine : edgeLines) {
+            Iterable<String> edgeTokens = Splitter.on(Pattern.compile("\t|\\s+")).split(edgeLine);
+            Iterator<String> iterator = edgeTokens.iterator();
+            graph.addEdge(Integer.parseInt(iterator.next()), Integer.parseInt(iterator.next()));
+        }
+        return graph;
+    }
+
 }

@@ -116,7 +116,7 @@ public class GraphTest {
         Graph graph = new Graph();
         graph.addNodes(1, 2);
         graph.addEdge(1, 2);
-        Graph.Edge edge = graph.getRandomEdge();
+        Edge edge = graph.getRandomEdge();
         assertThat(edge, is(not(nullValue())));
         assertThat(edge.node1, is(1));
         assertThat(edge.node2, is(2));
@@ -148,9 +148,9 @@ public class GraphTest {
         Graph graph = new Graph();
         graph.addNodes(1, 2);
         graph.addEdge(1, 2);
-        Collection<Graph.Edge> node1Edges = graph.getEdgesForNode(1);
+        Collection<Edge> node1Edges = graph.getEdgesForNode(1);
         assertThat(node1Edges, hasSize(1));
-        Graph.Edge edge = node1Edges.iterator().next();
+        Edge edge = node1Edges.iterator().next();
         assertThat(edge.node1, is(1));
         assertThat(edge.node2, is(2));
     }
@@ -161,9 +161,9 @@ public class GraphTest {
         graph.addNodes(1, 2, 3);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
-        Collection<Graph.Edge> node1Edges = graph.getEdgesForNode(1);
+        Collection<Edge> node1Edges = graph.getEdgesForNode(1);
         assertThat(node1Edges, hasSize(1));
-        Graph.Edge edge = node1Edges.iterator().next();
+        Edge edge = node1Edges.iterator().next();
         assertThat(edge.node1, is(1));
         assertThat(edge.node2, is(2));
     }

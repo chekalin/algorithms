@@ -12,7 +12,7 @@ public class MinCut {
         graph.removeNode(node2);
     }
 
-    private static Consumer<Graph.Edge> createEdgesToNode1(Graph graph, int node1, int node2) {
+    private static Consumer<Edge> createEdgesToNode1(Graph graph, int node1, int node2) {
         return edge -> {
             if (edge.node1 == node2) {
                 graph.addEdge(node1, edge.node2);
@@ -22,14 +22,14 @@ public class MinCut {
         };
     }
 
-    private static Predicate<Graph.Edge> doesNotPointToNode(int node1) {
+    private static Predicate<Edge> doesNotPointToNode(int node1) {
         return edge1 -> edge1.node1 != node1 && edge1.node2 != node1;
     }
 
     public static int findMinCut(Graph graph) {
         Graph graphCopy = graph.copy();
         while (graphCopy.getNumberOfNodes() > 2) {
-            Graph.Edge randomEdge = graphCopy.getRandomEdge();
+            Edge randomEdge = graphCopy.getRandomEdge();
             contract(graphCopy, randomEdge.node1, randomEdge.node2);
         }
         return graphCopy.getNumberOfEdges();
