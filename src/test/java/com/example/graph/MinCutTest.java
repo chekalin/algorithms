@@ -168,7 +168,7 @@ public class MinCutTest {
         graph.addEdge(2, 3);
         graph.addEdge(2, 4);
         graph.addEdge(3, 4);
-        assertThat(findMinCut(graph), is(3));
+        assertThat(findMinCut(graph, 10), is(3));
     }
 
     @Test
