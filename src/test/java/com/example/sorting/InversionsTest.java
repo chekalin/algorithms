@@ -1,11 +1,11 @@
-package com.example;
+package com.example.sorting;
 
 import com.google.common.base.Stopwatch;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static com.example.Inversions.findInversions;
-import static com.example.Inversions.findInversionsBruteForce;
+import static com.example.sorting.Inversions.findInversions;
+import static com.example.sorting.Inversions.findInversionsBruteForce;
 import static com.example.util.IOUtils.readIntegersFromFile;
 import static com.example.util.TestDataGenerator.createArrayOfRandomIntegers;
 import static org.hamcrest.core.Is.is;

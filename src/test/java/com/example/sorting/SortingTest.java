@@ -1,18 +1,19 @@
-package com.example;
+package com.example.sorting;
 
 import com.google.common.base.Stopwatch;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static com.example.HeapSort.heapSort;
-import static com.example.Sorting.bubbleSort;
-import static com.example.Sorting.findMedianIndex;
-import static com.example.Sorting.mergeSort;
-import static com.example.Sorting.quickSort;
-import static com.example.Sorting.quickSortFinal;
-import static com.example.Sorting.quickSortMedianOfThree;
+import static com.example.sorting.HeapSort.heapSort;
+import static com.example.sorting.Sorting.bubbleSort;
+import static com.example.sorting.Sorting.findMedianIndex;
+import static com.example.sorting.Sorting.mergeSort;
+import static com.example.sorting.Sorting.quickSort;
+import static com.example.sorting.Sorting.quickSortFinal;
+import static com.example.sorting.Sorting.quickSortMedianOfThree;
 import static com.example.util.IOUtils.readIntegersFromFile;
 import static com.example.util.Matchers.sorted;
+import static com.example.util.SortingTestUtil.testSortCorrectnessOnBasicCases;
 import static com.example.util.TestDataGenerator.createArrayOfRandomIntegers;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -21,48 +22,27 @@ public class SortingTest {
 
     @Test
     public void testBubbleSortCorrectness() throws Exception {
-        assertThat(bubbleSort(new int[]{1, 2}), is(sorted()));
-        assertThat(bubbleSort(new int[]{2, 1}), is(sorted()));
-        assertThat(bubbleSort(new int[]{1, 3, 2}), is(sorted()));
-        assertThat(bubbleSort(new int[]{3, 1, 2}), is(sorted()));
-        assertThat(bubbleSort(new int[]{3, 2, 1}), is(sorted()));
+        testSortCorrectnessOnBasicCases(Sorting::bubbleSort);
     }
 
     @Test
     public void testMergeSortCorrectness() throws Exception {
-        assertThat(mergeSort(new int[]{1, 2}), is(sorted()));
-        assertThat(mergeSort(new int[]{2, 1}), is(sorted()));
-        assertThat(mergeSort(new int[]{1, 3, 2}), is(sorted()));
-        assertThat(mergeSort(new int[]{3, 1, 2}), is(sorted()));
-        assertThat(mergeSort(new int[]{3, 2, 1}), is(sorted()));
+        testSortCorrectnessOnBasicCases(Sorting::mergeSort);
     }
 
     @Test
     public void testQuickSortCorrectness() throws Exception {
-        assertThat(quickSort(new int[]{1, 2}), is(sorted()));
-        assertThat(quickSort(new int[]{2, 1}), is(sorted()));
-        assertThat(quickSort(new int[]{1, 3, 2}), is(sorted()));
-        assertThat(quickSort(new int[]{3, 1, 2}), is(sorted()));
-        assertThat(quickSort(new int[]{3, 2, 1}), is(sorted()));
+        testSortCorrectnessOnBasicCases(Sorting::quickSort);
     }
 
     @Test
     public void testQuickSortFinalCorrectness() throws Exception {
-        assertThat(quickSortFinal(new int[]{1, 2}), is(sorted()));
-        assertThat(quickSortFinal(new int[]{2, 1}), is(sorted()));
-        assertThat(quickSortFinal(new int[]{1, 3, 2}), is(sorted()));
-        assertThat(quickSortFinal(new int[]{3, 1, 2}), is(sorted()));
-        assertThat(quickSortFinal(new int[]{3, 2, 1}), is(sorted()));
+        testSortCorrectnessOnBasicCases(Sorting::quickSortFinal);
     }
 
     @Test
     public void testQuickSortMedianCorrectness() throws Exception {
-        assertThat(quickSortMedianOfThree(new int[]{1, 2}), is(sorted()));
-        assertThat(quickSortMedianOfThree(new int[]{2, 1}), is(sorted()));
-        assertThat(quickSortMedianOfThree(new int[]{1, 3, 2}), is(sorted()));
-        assertThat(quickSortMedianOfThree(new int[]{3, 1, 2}), is(sorted()));
-        assertThat(quickSortMedianOfThree(new int[]{3, 2, 1}), is(sorted()));
-        assertThat(quickSortMedianOfThree(new int[]{2, 1, 3}), is(sorted()));
+        testSortCorrectnessOnBasicCases(Sorting::quickSortMedianOfThree);
     }
 
     @Test

@@ -1,6 +1,6 @@
-package com.example;
+package com.example.sorting;
 
-import static com.example.Sorting.swap;
+import static com.example.sorting.Sorting.swap;
 
 public class HeapSort {
 

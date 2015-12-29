@@ -1,12 +1,11 @@
-package com.example;
+package com.example.sorting;
 
+import com.example.util.SortingTestUtil;
 import org.junit.Test;
 
-import static com.example.HeapSort.createMaxHeap;
-import static com.example.HeapSort.heapSort;
-import static com.example.HeapSort.leftChildIndex;
-import static com.example.HeapSort.rightChildIndex;
-import static com.example.util.Matchers.sorted;
+import static com.example.sorting.HeapSort.createMaxHeap;
+import static com.example.sorting.HeapSort.leftChildIndex;
+import static com.example.sorting.HeapSort.rightChildIndex;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -14,12 +13,7 @@ public class HeapSortTest {
 
     @Test
     public void testHeapSortCorrectness() throws Exception {
-        assertThat(heapSort(new int[]{1, 2}), is(sorted()));
-        assertThat(heapSort(new int[]{2, 1}), is(sorted()));
-        assertThat(heapSort(new int[]{1, 3, 2}), is(sorted()));
-        assertThat(heapSort(new int[]{3, 1, 2}), is(sorted()));
-        assertThat(heapSort(new int[]{3, 2, 1}), is(sorted()));
-        assertThat(heapSort(new int[]{2, 1, 3}), is(sorted()));
+        SortingTestUtil.testSortCorrectnessOnBasicCases(HeapSort::heapSort);
     }
 
     @Test
