@@ -114,10 +114,6 @@ public class Sorting {
         quickSortMedianOfThree(array, pivotIndex + 1, end);
     }
 
-    private static String printSubArray(int[] array, int start, int end) {
-        return Arrays.toString(Arrays.copyOfRange(array, start, end + 1));
-    }
-
     static int findMedianIndex(int[] array, int start, int end) {
         int[] medianCandidates = new int[3];
         medianCandidates[0] = array[start];
