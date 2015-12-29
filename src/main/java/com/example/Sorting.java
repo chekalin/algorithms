@@ -28,7 +28,9 @@ public class Sorting {
     }
 
     private static void mergeSort(int[] input, int lowBoundary, int highBoundary, int[] helperArray) {
-        if (lowBoundary >= highBoundary) return;
+        if (lowBoundary >= highBoundary) {
+            return;
+        }
         int middleBoundary = lowBoundary + (highBoundary - lowBoundary) / 2;
         mergeSort(input, lowBoundary, middleBoundary, helperArray);
         mergeSort(input, middleBoundary + 1, highBoundary, helperArray);
@@ -65,7 +67,9 @@ public class Sorting {
     }
 
     private static void quickSort(int[] array, int start, int end) {
-        if (end <= start) return;
+        if (end <= start) {
+            return;
+        }
         int pivotIndex = partition(array, start, end);
         quickSort(array, start, pivotIndex - 1);
         quickSort(array, pivotIndex + 1, end);
@@ -92,7 +96,9 @@ public class Sorting {
     }
 
     private static void quickSortFinal(int[] array, int start, int end) {
-        if (end <= start) return;
+        if (end <= start) {
+            return;
+        }
         swap(array, start, end);
         int pivotIndex = partition(array, start, end);
         quickSortFinal(array, start, pivotIndex - 1);
@@ -106,7 +112,9 @@ public class Sorting {
     }
 
     private static void quickSortMedianOfThree(int[] array, int start, int end) {
-        if (end <= start) return;
+        if (end <= start) {
+            return;
+        }
         int median = findMedianIndex(array, start, end);
         swap(array, start, median);
         int pivotIndex = partition(array, start, end);
@@ -121,12 +129,17 @@ public class Sorting {
         medianCandidates[2] = array[end];
         Arrays.sort(medianCandidates);
         int median = medianCandidates[1];
-        if (array[start] == median) return start;
-        if (array[(start + end) / 2] == median) return (start + end) / 2;
-        else return end;
+        if (array[start] == median) {
+            return start;
+        }
+        if (array[(start + end) / 2] == median) {
+            return (start + end) / 2;
+        } else {
+            return end;
+        }
     }
 
-    private static void swap(int[] array, int pos1, int pos2) {
+    public static void swap(int[] array, int pos1, int pos2) {
         int temp = array[pos1];
         array[pos1] = array[pos2];
         array[pos2] = temp;
