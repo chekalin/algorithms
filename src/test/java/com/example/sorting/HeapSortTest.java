@@ -13,7 +13,7 @@ public class HeapSortTest {
 
     @Test
     public void testHeapSortCorrectness() throws Exception {
-        SortingTestUtil.testSortCorrectnessOnBasicCases(HeapSort::heapSort);
+        SortingTestUtil.testSortCorrectnessOnBasicCases(HeapSort::sort);
     }
 
     @Test

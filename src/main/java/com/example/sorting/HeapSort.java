@@ -1,10 +1,10 @@
 package com.example.sorting;
 
-import static com.example.sorting.Sorting.swap;
+import static com.example.util.ArrayUtils.swap;
 
 public class HeapSort {
 
-    public static int[] heapSort(int[] array) {
+    public static int[] sort(int[] array) {
         array = createMaxHeap(array);
         for (int j = array.length - 1; j >= 0; j--) {
             swap(array, 0, j);
