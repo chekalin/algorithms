@@ -3,12 +3,19 @@ package com.example.graph.structure;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import static com.google.common.collect.Collections2.filter;
 import static com.google.common.collect.Lists.newArrayList;
 
 public class UndirectedGraph {
+
     private List<Node> nodes = new ArrayList<>();
     private List<Edge> edges = new ArrayList<>();
 
@@ -102,6 +109,7 @@ public class UndirectedGraph {
     }
 
     private static class Node {
+
         private final int id;
 
         private Node(int id) {

@@ -1,6 +1,7 @@
 package com.example.graph.structure;
 
 public class Edge {
+
     public final int node1;
     public final int node2;
 

@@ -43,6 +43,7 @@ public class DirectedGraph {
     }
 
     private class NodeWithDirectedEdges {
+
         private List<Edge> incomingEdges;
         private List<Edge> outgoingEdges;
 

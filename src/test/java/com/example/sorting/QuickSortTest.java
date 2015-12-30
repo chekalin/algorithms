@@ -39,7 +39,6 @@ public class QuickSortTest {
         assertThat(findMedianIndex(new int[]{1, 2, 3, 4, 6, 9, 5, 7, 8}, 3, 8), is(8));
     }
 
-
     @Test
     public void testHomework2() throws Exception {
         sort(readIntegersFromFile("homework2/10.txt", 10));
