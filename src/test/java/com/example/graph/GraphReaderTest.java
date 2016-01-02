@@ -3,10 +3,11 @@ package com.example.graph;
 import com.example.graph.structure.DirectedGraph;
 import com.example.graph.structure.Edge;
 import com.example.graph.structure.UndirectedGraph;
+import com.example.graph.structure.WeightedDirectedGraph;
+import com.example.graph.structure.WeightedDirectedGraph.WeightedEdge;
 import org.junit.Test;
 
-import static com.example.graph.GraphReader.readDirectedGraphFromFile;
-import static com.example.graph.GraphReader.readGraphFromFile;
+import static com.example.graph.GraphReader.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
@@ -43,6 +44,21 @@ public class GraphReaderTest {
         Edge edgeFromNode2 = graph.getOutgoingEdges(2).iterator().next();
         assertThat(edgeFromNode2.node1, is(2));
         assertThat(edgeFromNode2.node2, is(3));
+    }
+
+    @Test
+    public void shouldReadWeightedDirectedGraphFromFile() throws Exception {
+        WeightedDirectedGraph graph = readWeightedDirectedGraphFromFile("homework5/testGraph1.txt");
+
+        assertThat(graph.getNumberOfNodes(), is(4));
+        assertThat(graph.getNumberOfEdges(), is(5));
+        assertThat(graph.getOutgoingEdges(1), hasSize(2));
+        assertThat(graph.getOutgoingEdges(1), hasItems(new WeightedEdge(1, 2, 3), new WeightedEdge(1, 3, 3)));
+        assertThat(graph.getOutgoingEdges(2), hasSize(2));
+        assertThat(graph.getOutgoingEdges(2), hasItems(new WeightedEdge(2, 3, 1), new WeightedEdge(2, 4, 2)));
+        assertThat(graph.getOutgoingEdges(3), hasSize(1));
+        assertThat(graph.getOutgoingEdges(3), hasItems(new WeightedEdge(3, 4, 50)));
+        assertThat(graph.getOutgoingEdges(4), hasSize(0));
     }
 
 }

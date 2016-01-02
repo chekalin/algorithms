@@ -2,6 +2,7 @@ package com.example.graph;
 
 import com.example.graph.structure.DirectedGraph;
 import com.example.graph.structure.UndirectedGraph;
+import com.example.graph.structure.WeightedDirectedGraph;
 import com.google.common.base.Splitter;
 import com.google.common.io.Resources;
 
@@ -41,6 +42,26 @@ public class GraphReader {
             Iterable<String> edgeTokens = Splitter.on(Pattern.compile("\t|\\s+")).split(edgeLine);
             Iterator<String> iterator = edgeTokens.iterator();
             graph.addEdge(Integer.parseInt(iterator.next()), Integer.parseInt(iterator.next()));
+        }
+        return graph;
+    }
+
+    public static WeightedDirectedGraph readWeightedDirectedGraphFromFile(String filename) throws IOException {
+        WeightedDirectedGraph graph = new WeightedDirectedGraph();
+        List<String> nodeLines = Resources.readLines(Resources.getResource(filename), Charset.forName("UTF-8"));
+        for (String nodeLine : nodeLines) {
+            Iterable<String> nodeTokens = Splitter.on(Pattern.compile("\t|\\s+")).split(nodeLine);
+            Iterator<String> nodeIterator = nodeTokens.iterator();
+            int fromNode = Integer.parseInt(nodeIterator.next());
+            while (nodeIterator.hasNext()) {
+                String edgeString = nodeIterator.next();
+                if (edgeString.isEmpty()) continue;
+                Iterable<String> edgeToken = Splitter.on(",").split(edgeString);
+                Iterator<String> edgeIterator = edgeToken.iterator();
+                int toNode = Integer.parseInt(edgeIterator.next());
+                int weight = Integer.parseInt(edgeIterator.next());
+                graph.addEdge(fromNode, toNode, weight);
+            }
         }
         return graph;
     }
